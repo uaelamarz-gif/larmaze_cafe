@@ -1,0 +1,103 @@
+{
+  "products": [
+    {
+      "id": "p#1",
+      "title": "Meal Compo 2x1",
+      "description": "Two dry aged 100% beef smashed patties, double American cheese and house sauce.",
+      "category": { "id": "c#burger", "name": "Burger" },
+      "images": [
+        "https://i.postimg.cc/0j5kWhZq/bbq-2416779-640.jpg",
+        "https://i.postimg.cc/90Xm8sbx/bbq-2823726-640.jpg"
+      ],
+      "price": 23,
+      "offerPrice": 0,
+      "isOffer": false,
+      "isPopular": true
+    },
+    {
+      "id": "p#2",
+      "title": "Classic Cheeseburger",
+      "description": "Juicy beef patty with melted cheese, pickles, and signature sauce.",
+      "category": { "id": "c#burger", "name": "Burger" },
+      "images": [
+        "https://i.postimg.cc/L4v6Y66H/burger-5933056-640.jpg",
+        "https://i.postimg.cc/G3zh8hhD/burger-9866406-640.jpg"
+      ],
+      "price": 18,
+      "offerPrice": 15,
+      "isOffer": true,
+      "isPopular": true
+    },
+    {
+      "id": "p#3",
+      "title": "Cheese Burger Deluxe",
+      "description": "Rich beef burger layered with extra cheese and fresh vegetables.",
+      "category": { "id": "c#burger", "name": "Burger" },
+      "images": [
+        "https://i.postimg.cc/yYd6F4k9/cheese-burger-7323672-640.jpg",
+        "https://i.postimg.cc/V6WsFzqW/chicken-4198085-640.jpg"
+      ],
+      "price": 21,
+      "offerPrice": 0,
+      "isOffer": false,
+      "isPopular": false
+    },
+    {
+      "id": "p#4",
+      "title": "Grilled Chicken Plate",
+      "description": "Tender grilled chicken served with sides and special seasoning.",
+      "category": { "id": "c#chicken", "name": "Chicken" },
+      "images": [
+        "https://i.postimg.cc/4dQ41X6h/food-712665-640.jpg",
+        "https://i.postimg.cc/NFNgWbP2/shawarma-5893935-640.jpg"
+      ],
+      "price": 20,
+      "offerPrice": 17,
+      "isOffer": true,
+      "isPopular": false
+    },
+    {
+      "id": "p#5",
+      "title": "Shawarma Wrap",
+      "description": "Middle Eastern shawarma wrapped with fresh vegetables and sauce.",
+      "category": { "id": "c#wraps", "name": "Wraps" },
+      "images": [
+        "https://i.postimg.cc/sxfj6bKj/shawarma-6063224-640.jpg",
+        "https://i.postimg.cc/kMwX6XX2/shish-kebab-2438669-1280.jpg"
+      ],
+      "price": 16,
+      "offerPrice": 0,
+      "isOffer": false,
+      "isPopular": true
+    },
+    {
+      "id": "p#6",
+      "title": "Chicken Wrap",
+      "description": "Grilled chicken wrap with lettuce and creamy sauce.",
+      "category": { "id": "c#wraps", "name": "Wraps" },
+      "images": [
+        "https://i.postimg.cc/XNx7G7NT/wrap-7061741-640.jpg",
+        "https://i.postimg.cc/GmBB4Zjs/Untitled-design-(3).png"
+      ],
+      "price": 15,
+      "offerPrice": 13,
+      "isOffer": true,
+      "isPopular": false
+    },
+    
+    {
+      "id": "p#8",
+      "title": "Kids Burger Meal",
+      "description": "Small burger meal specially made for kids.",
+      "category": { "id": "c#kids", "name": "Kids" },
+      "images": [
+        "https://i.postimg.cc/wMVfqpmF/8f9587509aaa9b0de7d0881a0d09c495.jpg",
+        "https://i.postimg.cc/KjNqG2M0/f09a60cdb9cfa4036b6f43c5e032a819.jpg"
+      ],
+      "price": 10,
+      "offerPrice": 0,
+      "isOffer": false,
+      "isPopular": true
+    }
+  ]
+}

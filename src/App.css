@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Kufi+Arabic:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+@plugin "daisyui" {
+  /* This forces the light theme and ignores the system dark mode */
+  themes: light; 
+}
+@utility no-scrollbar {
+     scrollbar-width: none; /* Firefox */
+     -ms-overflow-style: none; /* IE and Edge */
+     &::-webkit-scrollbar {
+          display: none; /* Chrome, Safari, and Opera */
+     }
+}
+
+@theme {
+     --color-primary: #8b2e2e;
+     --color-accent: #f5a623;
+     --color-tertiary: #3b7a57;
+
+     --color-text-primary: #2c2c2c;
+     --color-text-secondary: #6b6b6b;
+
+     --font-primary: "Montserrat", "Noto Kufi Arabic", serif;
+     --font-secondary: "Roboto", "Noto Kufi Arabic", "system-ui", "sans-serif";
+}
+

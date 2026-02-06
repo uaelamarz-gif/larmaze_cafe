@@ -1,0 +1,116 @@
+{
+  "products": [
+    {
+      "id": "p#1",
+      "title": "وجبة كومبو 2×1",
+      "description": "قطعتان لحم بقري مضغوط مع جبنة أمريكية وصوص خاص.",
+      "category": { "id": "c#burger", "name": "برجر" },
+      "images": [
+        "https://i.postimg.cc/0j5kWhZq/bbq-2416779-640.jpg",
+        "https://i.postimg.cc/90Xm8sbx/bbq-2823726-640.jpg"
+      ],
+      "price": 23,
+      "offerPrice": 0,
+      "isOffer": false,
+      "isPopular": true
+    },
+    {
+      "id": "p#2",
+      "title": "تشيز برجر كلاسيك",
+      "description": "برجر لحم بقري مع جبنة مذابة ومخلل.",
+      "category": { "id": "c#burger", "name": "برجر" },
+      "images": [
+        "https://i.postimg.cc/L4v6Y66H/burger-5933056-640.jpg",
+        "https://i.postimg.cc/G3zh8hhD/burger-9866406-640.jpg"
+      ],
+      "price": 18,
+      "offerPrice": 15,
+      "isOffer": true,
+      "isPopular": true
+    },
+    {
+      "id": "p#3",
+      "title": "برجر جبنة ديلوكس",
+      "description": "برجر لحم مع طبقات جبنة وخضار طازجة.",
+      "category": { "id": "c#burger", "name": "برجر" },
+      "images": [
+        "https://i.postimg.cc/yYd6F4k9/cheese-burger-7323672-640.jpg",
+        "https://i.postimg.cc/V6WsFzqW/chicken-4198085-640.jpg"
+      ],
+      "price": 21,
+      "offerPrice": 0,
+      "isOffer": false,
+      "isPopular": false
+    },
+    {
+      "id": "p#4",
+      "title": "طبق دجاج مشوي",
+      "description": "دجاج مشوي متبل يقدم مع إضافات.",
+      "category": { "id": "c#chicken", "name": "دجاج" },
+      "images": [
+        "https://i.postimg.cc/4dQ41X6h/food-712665-640.jpg",
+        "https://i.postimg.cc/NFNgWbP2/shawarma-5893935-640.jpg"
+      ],
+      "price": 20,
+      "offerPrice": 17,
+      "isOffer": true,
+      "isPopular": false
+    },
+    {
+      "id": "p#5",
+      "title": "راب شاورما",
+      "description": "شاورما لذيذة ملفوفة مع خضار وصوص.",
+      "category": { "id": "c#wraps", "name": "راب" },
+      "images": [
+        "https://i.postimg.cc/sxfj6bKj/shawarma-6063224-640.jpg",
+        "https://i.postimg.cc/kMwX6XX2/shish-kebab-2438669-1280.jpg"
+      ],
+      "price": 16,
+      "offerPrice": 0,
+      "isOffer": false,
+      "isPopular": true
+    },
+    {
+      "id": "p#6",
+      "title": "راب دجاج",
+      "description": "دجاج مشوي ملفوف مع خس وصوص كريمي.",
+      "category": { "id": "c#wraps", "name": "راب" },
+      "images": [
+        "https://i.postimg.cc/XNx7G7NT/wrap-7061741-640.jpg",
+        "https://i.postimg.cc/GmBB4Zjs/Untitled-design-(3).png"
+      ],
+      "price": 15,
+      "offerPrice": 13,
+      "isOffer": true,
+      "isPopular": false
+    },
+    {
+      "id": "p#7",
+      "title": "بانكيك حلو",
+      "description": "بانكيك طري يقدم مع شراب وتزيينات.",
+      "category": { "id": "c#dessert", "name": "حلويات" },
+      "images": [
+        "https://i.postimg.cc/nzGV1n44/pancakes-2291908-640.jpg",
+        "https://i.postimg.cc/QxF5798G/979856.png"
+      ],
+      "price": 12,
+      "offerPrice": 0,
+      "isOffer": false,
+      "isPopular": false
+    },
+    {
+      "id": "p#8",
+      "title": "وجبة برجر للأطفال",
+      "description": "وجبة برجر صغيرة مناسبة للأطفال.",
+      "category": { "id": "c#kids", "name": "أطفال" },
+      "images": [
+        "https://i.postimg.cc/wMVfqpmF/8f9587509aaa9b0de7d0881a0d09c495.jpg",
+        "https://i.postimg.cc/KjNqG2M0/f09a60cdb9cfa4036b6f43c5e032a819.jpg"
+      ],
+      "price": 10,
+      "offerPrice": 0,
+      "isOffer": false,
+      "isPopular": true
+    }
+  ]
+}
