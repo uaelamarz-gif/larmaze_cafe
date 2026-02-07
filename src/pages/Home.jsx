@@ -11,7 +11,7 @@ import Footer from "../components/Footer";
 import Loading from "../components/ui/Loading";
 
 const Home = () => {
-     const [language, setLanguage] = useState("en"); // "en" | "ar"
+     const [language, setLanguage] = useState("ar"); // "en" | "ar"
      const [products, setProducts] = useState([]);
      const [categoriesList, setCategoriesList] = useState([]);
      const [loading, setLoading] = useState(false);
