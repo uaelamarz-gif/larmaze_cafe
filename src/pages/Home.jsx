@@ -58,7 +58,7 @@ const Home = () => {
                               catsMap.set(name, { id: catsMap.size + 1, name });
                     });
                     const cats = [
-                         { id: 0, name: "All" },
+                         { id: 0, name: "الكل" },
                          ...Array.from(catsMap.values()),
                     ];
                     setCategoriesList(cats);
