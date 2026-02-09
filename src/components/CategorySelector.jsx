@@ -45,7 +45,7 @@ export default function CategorySelector({ categories: categoriesProp }) {
                el.scrollIntoView({ behavior: "smooth", block: "start" });
           } else {
                // if 'All', scroll to top of products container
-               if (category.name.toLowerCase() === "all") {
+               if (category.name === "All" || category.name === "الكل") {
                     const container =
                          document.querySelector(".container.max-w-2xl") ||
                          document.documentElement;

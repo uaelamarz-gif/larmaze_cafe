@@ -2,6 +2,7 @@ import React from "react";
 import { useCart } from "../contexts/CartContext";
 import { useCurrency } from "../contexts/CurrencyContext";
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineDelete } from "react-icons/ai";
+import { useLang } from "../contexts/LangContext";
 
 const CartModal = () => {
      const {
@@ -13,6 +14,7 @@ const CartModal = () => {
           getTotalPrice,
      } = useCart();
      const { symbol } = useCurrency();
+     const { lang: language } = useLang();
 
      const handleWhatsAppOrder = () => {
           if (cart.length === 0) {
@@ -60,7 +62,7 @@ const CartModal = () => {
 
                          {/* Header */}
                          <h2 className="text-2xl font-bold font-primary text-gray-900 mb-4">
-                              Your Cart
+                              {language==="ar" ? "العربة" : "Your Cart" }
                          </h2>
 
                          {/* Cart Items */}
@@ -142,7 +144,7 @@ const CartModal = () => {
                               </div>
                          ) : (
                               <div className="text-center text-gray-500 py-8">
-                                   Your cart is empty
+                                   {language==="ar" ? "العربة فارغة" : "Your cart is empty" }
                               </div>
                          )}
 
@@ -165,14 +167,14 @@ const CartModal = () => {
                                    onClick={closeCartModal}
                                    className="btn btn-ghost"
                               >
-                                   Continue Shopping
+                              {language==="ar" ? "اكمل تسوق" : "Continue Shopping" }
                               </button>
                               {cart.length > 0 && (
                                    <button
                                         onClick={handleWhatsAppOrder}
                                         className="btn btn-success bg-green-400 text-white"
                                    >
-                                        Send to WhatsApp
+                                   {language==="ar" ? "ارسل إلي واتساب" : "Send to WhatsApp" }          
                                    </button>
                               )}
                          </div>

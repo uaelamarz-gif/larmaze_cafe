@@ -6,31 +6,34 @@ import AdminProducts from "./pages/AdminProducts";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 import { CartProvider } from "./contexts/CartContext";
+import { LangProvider } from "./contexts/LangContext";
 import CartModal from "./components/CartModal";
 
 function App() {
      return (
           <BrowserRouter>
-               <AuthProvider>
-                    <CartProvider>
-                         <CartModal />
-                         <Routes>
-                              <Route path="/" element={<Home />} />
-                              <Route
-                                   path="/admin/login"
-                                   element={<AdminLogin />}
-                              />
-                              <Route
-                                   path="/admin/products"
-                                   element={
-                                        <ProtectedRoute>
-                                             <AdminProducts />
-                                        </ProtectedRoute>
-                                   }
-                              />
-                         </Routes>
-                    </CartProvider>
-               </AuthProvider>
+               <LangProvider>
+                    <AuthProvider>
+                         <CartProvider>
+                              <CartModal />
+                              <Routes>
+                                   <Route path="/" element={<Home />} />
+                                   <Route
+                                        path="/admin/login"
+                                        element={<AdminLogin />}
+                                   />
+                                   <Route
+                                        path="/admin/products"
+                                        element={
+                                             <ProtectedRoute>
+                                                  <AdminProducts />
+                                             </ProtectedRoute>
+                                        }
+                                   />
+                              </Routes>
+                         </CartProvider>
+                    </AuthProvider>
+               </LangProvider>
           </BrowserRouter>
      );
 }

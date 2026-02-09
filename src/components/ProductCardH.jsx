@@ -32,7 +32,7 @@ const ProductCardH = ({
                <div className="bg-gray-200 flex justify-center">
                     <img
                          src={image || "https://placehold.co/600x400"}
-                         className="rounded-b-md object-cover min-h-47.25 md:h-auto max-h-47.25"
+                         className="rounded-b-md object-cover min-h-47.25 w-full md:h-auto max-h-47.25"
                          alt=""
                     />
                </div>

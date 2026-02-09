@@ -27,7 +27,7 @@ const CardsSection = ({ title, cards = [] }) => {
                          {cards.length > 0 ? (
                               cards.map((c) => (
                                    <ProductCardH
-                                        key={c.id}
+                                        key={`${c.id}-${c.title}-${title}`}
                                         product={c}
                                         onCardClick={handleCardClick}
                                         title={c.title}

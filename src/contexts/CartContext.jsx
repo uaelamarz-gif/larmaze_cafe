@@ -15,16 +15,10 @@ export const CartProvider = ({ children }) => {
      const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
      const addToCart = (product, quantity = 1) => {
-          console.log("Adding to cart:", {
-               productId: product._id,
-               productTitle: product.title,
-               quantity,
-          });
           setCart((prevCart) => {
                const existingItem = prevCart.find(
                     (item) => item._id === product._id,
                );
-               console.log("Existing item found:", existingItem ? "YES" : "NO");
 
                if (existingItem) {
                     return prevCart.map((item) =>

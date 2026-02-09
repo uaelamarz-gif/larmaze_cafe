@@ -29,7 +29,7 @@ const ProductsContainer = ({ title, products = [], id }) => {
                          {products.length > 0 ? (
                               products.map((p) => (
                                    <ProductCard
-                                        key={p.id}
+                                        key={p._id}
                                         product={p}
                                         onCardClick={handleCardClick}
                                         title={p.title}

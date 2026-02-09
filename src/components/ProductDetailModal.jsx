@@ -3,10 +3,12 @@ import PopularTag from "./ui/PopularTag";
 import OfferTag from "./ui/OfferTag";
 import { useCurrency } from "../contexts/CurrencyContext";
 import { useCart } from "../contexts/CartContext";
+import { useLang } from "../contexts/LangContext";
 
 const ProductDetailModal = ({ product, isOpen, onClose }) => {
      const { symbol } = useCurrency();
      const { addToCart, openCartModal } = useCart();
+     const { lang: language } = useLang();
 
      if (!product) return null;
 
@@ -68,7 +70,7 @@ const ProductDetailModal = ({ product, isOpen, onClose }) => {
                                    {product.category && (
                                         <div className="text-sm text-gray-500">
                                              <span className="font-semibold">
-                                                  Category:
+                                                  {language==="ar" ? "الصنف:" : "Category:" }
                                              </span>{" "}
                                              {typeof product.category ===
                                              "string"
@@ -100,7 +102,7 @@ const ProductDetailModal = ({ product, isOpen, onClose }) => {
                                    
                                    <div>
                                         <p className="font-semibold text-gray-900 mb-2">
-                                             Description
+                                        {language==="ar" ? "الوصف:" : "Description:" }
                                         </p>
                                         <p className="text-gray-600 text-sm leading-relaxed">
                                              {product.description ||
@@ -126,13 +128,13 @@ const ProductDetailModal = ({ product, isOpen, onClose }) => {
                                              onClick={onClose}
                                              className="btn btn-ghost"
                                         >
-                                             Close
+                                                  {language==="ar" ? "اغلاق" : "Close" }
                                         </button>
                                         <button
                                              onClick={handleAddToCart}
                                              className="btn border-0 text-white bg-green-500"
                                         >
-                                             Add to Cart
+                                                  {language==="ar" ? "اضف الي العربة" : "Add to Cart" }
                                         </button>
                                    </div>
                               </div>
