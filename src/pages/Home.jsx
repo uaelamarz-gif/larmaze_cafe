@@ -145,8 +145,8 @@ const Home = () => {
                               <CardsSection
                                    title={
                                         language === "en"
-                                             ? "Special Offers !"
-                                             : "عروض خاصة!"
+                                             ? "Special Offers !🔥"
+                                             : "عروض خاصة!🔥"
                                    }
                                    cards={products.filter((p) => p.isOffer)}
                               />
