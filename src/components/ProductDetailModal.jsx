@@ -68,7 +68,7 @@ const ProductDetailModal = ({ product, isOpen, onClose }) => {
 
                                    {/* Category */}
                                    {product.category && (
-                                        <div className="text-sm text-gray-500">
+                                        <div className="text-sm font-secondary text-gray-500">
                                              <span className="font-semibold">
                                                   {language==="ar" ? "الصنف:" : "Category:" }
                                              </span>{" "}
@@ -101,7 +101,7 @@ const ProductDetailModal = ({ product, isOpen, onClose }) => {
                                    {/* Description */}
                                    
                                    <div>
-                                        <p className="font-semibold text-gray-900 mb-2">
+                                        <p className="font-semibold font-secondary text-gray-900 mb-2">
                                         {language==="ar" ? "الوصف:" : "Description:" }
                                         </p>
                                         <p className="text-gray-600 text-sm leading-relaxed">
