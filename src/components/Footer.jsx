@@ -6,7 +6,7 @@ const Footer = () => {
   <aside>
     <div className="logo rounded-full aspect-square w-20 border-white border-4 overflow-hidden">
             <img
-                src="logo-larmaze.png"
+                src="logo.png"
                 className="object-cover object-center"
                 alt=""
             />
