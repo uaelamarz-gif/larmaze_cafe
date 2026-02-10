@@ -59,7 +59,7 @@ const Home = () => {
                               catsMap.set(name, { id: catsMap.size + 1, name });
                     });
                     const cats = [
-                         { id: 0, name: (language==="ar" ? "الكل" : "All") },
+                         { id: 0, name: (language==="ar" ? "عروض خاصة!🔥" : "Special Offers !🔥") },
                          ...Array.from(catsMap.values()),
                     ];
                     setCategoriesList(cats);
