@@ -39,10 +39,10 @@ export default function CategorySelector({ categories: categoriesProp }) {
      const handleClick = (category, index) => {
           setSelected(category.id);
           // scroll to section with id `category-{slug}`
-          const targetId = `category-${slug(category.name)}`;
+          const targetId = `category-${category.name}`;
           const el = document.getElementById(targetId);
           if (el) {
-               el.scrollIntoView({ behavior: "smooth", block: "start" });
+               el.scrollIntoView({ behavior: "smooth", block: "center" });
           } else {
                // if 'All', scroll to top of products container
                if (category.name === "All" || category.name === "الكل") {
@@ -51,7 +51,7 @@ export default function CategorySelector({ categories: categoriesProp }) {
                          document.documentElement;
                     container.scrollIntoView({
                          behavior: "smooth",
-                         block: "start",
+                         block: "center",
                     });
                }
           }
@@ -78,7 +78,7 @@ export default function CategorySelector({ categories: categoriesProp }) {
                                              )
                                                   handleClick(category, index);
                                         }}
-                                        className={`p-5 cursor-pointer ${isActive ? "border-b-4 text-[#F5A623] border-[#8B2E2E]" : ""}`}
+                                        className={`p-5 cursor-pointer shrink-0 ${isActive ? "border-b-4 text-[#F5A623] border-[#8B2E2E]" : ""}`}
                                    >
                                         {category.name}
                                    </div>
