@@ -96,7 +96,7 @@ const Home = () => {
                <div className="img relative pt-3 pb-8  overflow-hidden px-2 bg-black">
                     <img
                          src="/bg-cover.webp"
-                         className="object-cover filter brightness-50 top-0 left-0 absolute"
+                         className="object-cover w-full h-full filter brightness-50 top-0 left-0 absolute"
                          alt="cover"
                     />
                     <div className=" resturant-details flex flex-col gap-16 relative m-auto max-w-3xl">
@@ -106,8 +106,8 @@ const Home = () => {
                                    <div className="flex flex-col  gap-2">
                                         <div className="logo rounded-full aspect-square w-20 md:w-28 border-white border-4 overflow-hidden">
                                              <img
-                                                  src="logo-larmaze.png"
-                                                  className="object-cover object-center"
+                                                  src="logo.png"
+                                                  className="object-cover w-full object-center"
                                                   alt=""
                                              />
                                         </div>
@@ -163,10 +163,7 @@ const Home = () => {
                               {categoriesList &&
                                    categoriesList.length > 0 &&
                                    categoriesList.slice(1).map((cat) => {
-                                        const slug = cat.name
-                                             .toLowerCase()
-                                             .replace(/\s+/g, "-")
-                                             .replace(/[^a-z0-9\-]/g, "");
+                                        const slug = cat.name;
                                         const catProducts = products.filter(
                                              (p) => {
                                                   const raw = p.category;

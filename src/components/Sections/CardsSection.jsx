@@ -18,7 +18,7 @@ const CardsSection = ({ title, cards = [] }) => {
 
      return (
           <>
-               <div className="specialProductsContainer py-3 px-3">
+               <div id={`category-${title}`} className="specialProductsContainer py-3 px-3">
                     <div className="container-title-lg md:text-center text-start pb-4 font-primary font-bold text-3xl">
                          {title || "Not Title"}
                     </div>
