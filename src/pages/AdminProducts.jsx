@@ -236,12 +236,12 @@ const AdminProducts = () => {
                                    >
                                         {/* Names */}
                                         <div className="space-y-2">
-                                             <label className="text-sm font-semibold opacity-70">
+                                             <label className="text-sm  font-semibold opacity-70">
                                                   Name (EN)
                                              </label>
                                              <input
                                                   type="text"
-                                                  className="w-full p-3 rounded-xl border border-zinc-200 bg-transparent"
+                                                  className="w-full p-3 rounded-xl border-green-400 border bg-transparent"
                                                   value={formData.name_en}
                                                   onChange={(e) =>
                                                        setFormData({
@@ -262,7 +262,7 @@ const AdminProducts = () => {
                                              </label>
                                              <input
                                                   type="text"
-                                                  className="w-full p-3 rounded-xl border border-zinc-200 bg-transparent"
+                                                  className="w-full p-3 rounded-xl border-amber-400 border bg-transparent"
                                                   value={formData.name_ar}
                                                   onChange={(e) =>
                                                        setFormData({
@@ -282,7 +282,7 @@ const AdminProducts = () => {
                                              </label>
                                              <input
                                                   type="text"
-                                                  className="w-full p-3 rounded-xl border border-zinc-200 bg-transparent"
+                                                  className="w-full p-3 rounded-xl border-green-400 border bg-transparent"
                                                   value={formData.category_en}
                                                   onChange={(e) =>
                                                        setFormData({
@@ -302,7 +302,7 @@ const AdminProducts = () => {
                                              </label>
                                              <input
                                                   type="text"
-                                                  className="w-full p-3 rounded-xl border border-zinc-200 bg-transparent"
+                                                  className="w-full p-3 rounded-xl border-amber-400 border bg-transparent"
                                                   value={formData.category_ar}
                                                   onChange={(e) =>
                                                        setFormData({
@@ -316,11 +316,11 @@ const AdminProducts = () => {
 
                                         {/* Descriptions */}
                                         <div className="md:col-span-2 space-y-2">
-                                             <label className="text-sm font-semibold opacity-70">
+                                             <label className="text-sm  font-semibold opacity-70">
                                                   Description (EN)
                                              </label>
                                              <textarea
-                                                  className="w-full p-3 rounded-xl border border-zinc-200 bg-transparent h-24"
+                                                  className="w-full p-3 rounded-xl border-green-400 border bg-transparent h-24"
                                                   value={
                                                        formData.description_en
                                                   }
@@ -334,11 +334,11 @@ const AdminProducts = () => {
                                              />
                                         </div>
                                         <div className="md:col-span-2 space-y-2">
-                                             <label className="text-sm font-semibold opacity-70">
+                                             <label className="text-sm  font-semibold opacity-70">
                                                   Description (AR)
                                              </label>
                                              <textarea
-                                                  className="w-full p-3 rounded-xl border border-zinc-200 bg-transparent h-24"
+                                                  className="w-full p-3 rounded-xl border-amber-400 border bg-transparent h-24"
                                                   value={
                                                        formData.description_ar
                                                   }
@@ -358,7 +358,7 @@ const AdminProducts = () => {
                                              </label>
                                              <input
                                                   type="number"
-                                                  className="w-full p-3 rounded-xl border border-zinc-200 bg-transparent"
+                                                  className="w-full p-3 rounded-xl border-2 border-red-400 bg-transparent"
                                                   value={formData.price}
                                                   onChange={(e) =>
                                                        setFormData({
@@ -371,11 +371,11 @@ const AdminProducts = () => {
                                         </div>
                                         <div className="space-y-2">
                                              <label className="text-sm font-semibold opacity-70">
-                                                  Offer Price ($)
+                                                  Offer Price ($)<span className="text-xs font-secondary text-red-500">MUST check On Offer box to appear</span>
                                              </label>
                                              <input
                                                   type="number"
-                                                  className="w-full p-3 rounded-xl border border-zinc-200 bg-transparent"
+                                                  className="w-full p-3 rounded-xl border border-green-400 bg-transparent"
                                                   value={formData.offerPrice}
                                                   onChange={(e) =>
                                                        setFormData({

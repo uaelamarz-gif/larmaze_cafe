@@ -51,13 +51,20 @@ const ProductCardH = ({
                </div>
                <div className="container p-2 flex items-center justify-between">
                     <div className=" flex items-center gap-2">
+                         {isOffer ? <>
                          <span className="text-1xl font-primary font-extrabold line-through text-gray-400">
-                              {offerPrice || ""}
+                              {price || ""}
                          </span>
+                         <span className="text-2xl font-primary font-extrabold text-gray-900">
+                              {offerPrice || 0}
+                              <span className="text-sm">{symbol}</span>
+                         </span>                         
+                         </> :
                          <span className="text-2xl font-primary font-extrabold text-gray-900">
                               {price || 0}
                               <span className="text-sm">{symbol}</span>
                          </span>
+                         }
                     </div>
                </div>
           </div>
