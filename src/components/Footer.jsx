@@ -17,7 +17,7 @@ const Footer = () => {
       Serving Happiness Daily
     </p>
     <p>20 Al Abnous St - Al Jimi - Al Ameriya</p>
-    <p>+971565371171 </p>
+    <p>+971565371171</p>
     <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
   </aside>
   <nav>
