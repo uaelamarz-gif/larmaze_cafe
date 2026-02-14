@@ -181,13 +181,13 @@ const Home = () => {
                                                   key={cat.id}
                                                   id={`category-${slug}`}
                                                   title={cat.name}
-                                                  products={catProducts}
+                                                  products={catProducts.reverse()}
                                              />
                                         );
                                    })}
 
                               {/* Fallback main products */}
-                              <ProductsContainer products={products} />
+                              <ProductsContainer title={language==='en' ? "All Products" : "كل الاطباق"} products={products} />
                          </>
                     )}
                </div>

@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { Pencil, Trash2, Plus, X, Image as ImageIcon } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import CategoryOrderUpdate from "../components/ui/UpdateOrder";
 
 const AdminProducts = () => {
      const [products, setProducts] = useState([]);
@@ -22,6 +23,7 @@ const AdminProducts = () => {
           description_ar: "",
           images: [""], // يدعم مصفوفة صور
           price: 0,
+          order: 0,
           offerPrice: 0,
           isOffer: false,
           isPopular: false,
@@ -162,6 +164,7 @@ const AdminProducts = () => {
                     product.images && product.images.length
                          ? product.images
                          : [""],
+               order:product.order || "Nan",
                price: product.price || 0,
                offerPrice: product.offerPrice || 0,
                isOffer: !!product.isOffer,
@@ -193,7 +196,7 @@ const AdminProducts = () => {
                                         setEditingId(null);
                                         setIsModalOpen(true);
                                    }}
-                                   className="bg-zinc-900  text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:scale-105 transition-transform"
+                                   className="bg-zinc-900  text-xs md:text-1xl text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:scale-105 transition-transform"
                               >
                                    <Plus size={20} /> Add Product
                               </button>
@@ -203,13 +206,13 @@ const AdminProducts = () => {
                                         logout();
                                         navigate("/admin/login");
                                    }}
-                                   className="bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-xl font-bold flex items-center gap-2 transition"
+                                   className="bg-red-600 hover:bg-red-700 text-xs md:text-1xl text-white px-4 py-3 rounded-xl font-bold flex items-center gap-2 transition"
                               >
                                    Sign Out
                               </button>
                          </div>
                     </header>
-
+                         <CategoryOrderUpdate fetchProducts={fetchProducts}/>
                     {/* Modal Form */}
                     {isModalOpen && (
                          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
@@ -313,7 +316,27 @@ const AdminProducts = () => {
                                                   }
                                              />
                                         </div>
-
+                                        {/* order */}
+                                        <div
+                                             className="space-y-2 text-right"
+                                             dir="rtl"
+                                        >
+                                             <label className="text-sm font-semibold opacity-70">
+                                                 Category Order
+                                             </label>
+                                             <input
+                                                  type="text"
+                                                  className="w-full p-3 rounded-xl border-amber-400 border bg-transparent"
+                                                  value={formData.order}
+                                                  onChange={(e) =>
+                                                       setFormData({
+                                                            ...formData,
+                                                            order:
+                                                                 e.target.value,
+                                                       })
+                                                  }
+                                             />
+                                        </div>
                                         {/* Descriptions */}
                                         <div className="md:col-span-2 space-y-2">
                                              <label className="text-sm  font-semibold opacity-70">
@@ -560,6 +583,7 @@ const AdminProducts = () => {
                                                                       Popular
                                                                  </span>
                                                             )}
+                                                            <span className="p-1 text-xs font-secondary font-bold bg-red-300 rounded-md">order-{product.order}</span>
                                                        </div>
                                                   </div>
                                                   <div className="flex flex-col md:flex-row gap-2">
