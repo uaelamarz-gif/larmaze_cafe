@@ -44,7 +44,7 @@ export default function CategoryOrderUpdate({fetchProducts}) {
                 })
                await fetchProducts();
           } catch (error) {
-            console.err(error);
+            console.log(error);
             Swal.fire(
                 "خطأ!",
                 error.message || "فشل في حفظ البيانات",
