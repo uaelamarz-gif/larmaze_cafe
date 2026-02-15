@@ -6,7 +6,7 @@ const SocialBtns = () => {
   return (
                          <div className="social flex justify-end gap-4">
                               <a
-                                   href="https://www.facebook.com"
+                                   href="https://www.instagram.com/lamarz.uae/"
                                    target="_blank"
                                    rel="noopener noreferrer"
                                    className="rounded-md p-2 bg-blue-600 hover:bg-blue-700 transition-colors flex items-center justify-center text-xl text-white"
@@ -14,7 +14,7 @@ const SocialBtns = () => {
                                    <FaFacebook />
                               </a>
                               <a
-                                   href="https://www.instagram.com"
+                                   href="https://www.instagram.com/lamarz.uae/"
                                    target="_blank"
                                    rel="noopener noreferrer"
                                    className="rounded-md p-2 bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 transition-colors flex items-center justify-center text-xl text-white"
@@ -22,7 +22,7 @@ const SocialBtns = () => {
                                    <FaInstagram />
                               </a>
                               <a
-                                   href="https://wa.me/1234567890"
+                                   href="https://api.whatsapp.com/send/?phone=%2B971562292557"
                                    target="_blank"
                                    rel="noopener noreferrer"
                                    className="rounded-md p-2 bg-green-500 hover:bg-green-600 transition-colors flex items-center justify-center text-xl text-white"
@@ -30,7 +30,7 @@ const SocialBtns = () => {
                                    <FaWhatsapp />
                               </a>
                               <a
-                                   href="https://maps.google.com"
+                                   href="https://share.google/6adIoBwzbFHrMulWe"
                                    target="_blank"
                                    rel="noopener noreferrer"
                                    className="rounded-md p-2 bg-red-500 hover:bg-red-600 transition-colors flex items-center justify-center text-xl text-white"
