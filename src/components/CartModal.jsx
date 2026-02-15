@@ -34,7 +34,7 @@ const CartModal = () => {
           const message = `*Order Request*\n\n${cartText}\n\n*Total: ${totalPrice}${symbol}*`;
 
           // WhatsApp number (replace with your restaurant's number)
-          const whatsappNumber = "+97137667663"; // Format: country code + number without +
+          const whatsappNumber = "+971562292557"; // Format: country code + number without +
           const encodedMessage = encodeURIComponent(message);
           const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
