@@ -12,7 +12,7 @@ function fetchMockBanners() {
           {
             id: 1,
             image:
-              "https://i.ibb.co/MxwXWbPz/222225.jpg",
+              "https://lh3.googleusercontent.com/p/AF1QipNbAngxsOs422PTw7tuD4M6KJyvyY7a9WOYKhGs=s680-w680-h510-rw",
             alt: "Burger offer",
           },
           {
