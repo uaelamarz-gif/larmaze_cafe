@@ -18,7 +18,7 @@ function fetchMockBanners() {
           {
             id: 2,
             image:
-              "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38",
+              "https://i.ibb.co/xSjPV6X4/unnamed-2.webp",
             alt: "Fast food deal",
           },
           {
