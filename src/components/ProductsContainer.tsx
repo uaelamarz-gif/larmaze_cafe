@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ProductCard from "./ProductCard";
 import ProductDetailModal from "./ProductDetailModal";
+import { ProductCardView } from "../types/product";
 
-const ProductsContainer = ({ title, products = [], id }) => {
-     const [selectedProduct, setSelectedProduct] = useState(null);
-     const [isModalOpen, setIsModalOpen] = useState(false);
+type ProductsContainerProps = {
+     title?: string;
+     products?: ProductCardView[];
+     id?: string;
+};
 
-     const handleCardClick = (product) => {
+const ProductsContainer = ({
+     title,
+     products = [],
+     id,
+}: ProductsContainerProps) => {
+     const [selectedProduct, setSelectedProduct] =
+          useState<ProductCardView | null>(null);
+     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+     const handleCardClick = (product: ProductCardView) => {
           setSelectedProduct(product);
           setIsModalOpen(true);
      };
@@ -29,7 +41,7 @@ const ProductsContainer = ({ title, products = [], id }) => {
                          {products.length > 0 ? (
                               products.map((p) => (
                                    <ProductCard
-                                        key={p._id}
+                                        key={p.id}
                                         product={p}
                                         onCardClick={handleCardClick}
                                         title={p.title}

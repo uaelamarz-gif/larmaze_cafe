@@ -1,7 +1,19 @@
-import React from "react";
 import PopularTag from "./ui/PopularTag";
 import OfferTag from "./ui/OfferTag";
 import { useCurrency } from "../contexts/CurrencyContext";
+import { ProductCardView } from "../types/product";
+
+type ProductCardProps = {
+     price?: string;
+     offerPrice?: string;
+     image?: string;
+     isOffer?: boolean;
+     isPopular?: boolean;
+     title?: string;
+     description?: string;
+     product?: ProductCardView;
+     onCardClick?: (product: ProductCardView) => void;
+};
 
 const ProductCard = ({
      price,
@@ -13,7 +25,7 @@ const ProductCard = ({
      description,
      product,
      onCardClick,
-}) => {
+}: ProductCardProps) => {
      const Popular = isPopular || false;
      const Offer = isOffer || false;
      const { symbol } = useCurrency();
@@ -50,20 +62,24 @@ const ProductCard = ({
 
                     {/* Price */}
                     <div className="price mt-2 flex items-center gap-2">
-                         {isOffer ? <>
-                         <span className="text-1xl font-primary font-extrabold line-through text-gray-400">
-                              {price || ""}
-                         </span>
-                         <span className="text-2xl font-primary font-extrabold text-gray-900">
-                              {offerPrice || 0}
-                              <span className="text-sm">{symbol}</span>
-                         </span>                         
-                         </> :
-                         <span className="text-2xl font-primary font-extrabold text-gray-900">
-                              {price || 0}
-                              <span className="text-sm">{symbol}</span>
-                         </span>
-                         }
+                         {isOffer ? (
+                              <>
+                                   <span className="text-1xl font-primary font-extrabold line-through text-gray-400">
+                                        {price || ""}
+                                   </span>
+                                   <span className="text-2xl font-primary font-extrabold text-gray-900">
+                                        {offerPrice || 0}
+                                        <span className="text-sm">
+                                             {symbol}
+                                        </span>
+                                   </span>
+                              </>
+                         ) : (
+                              <span className="text-2xl font-primary font-extrabold text-gray-900">
+                                   {price || 0}
+                                   <span className="text-sm">{symbol}</span>
+                              </span>
+                         )}
                     </div>
                </div>
 

@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ProductCardH from "../ProductCardH";
 import ProductDetailModal from "../ProductDetailModal";
+import { ProductCardView } from "../../types/product";
 
-const CardsSection = ({ title, cards = [] }) => {
-     const [selectedProduct, setSelectedProduct] = useState(null);
-     const [isModalOpen, setIsModalOpen] = useState(false);
+type CardsSectionProps = {
+     title?: string;
+     cards?: ProductCardView[];
+};
 
-     const handleCardClick = (product) => {
+const CardsSection = ({ title, cards = [] }: CardsSectionProps) => {
+     const [selectedProduct, setSelectedProduct] =
+          useState<ProductCardView | null>(null);
+     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+     const handleCardClick = (product: ProductCardView) => {
           setSelectedProduct(product);
           setIsModalOpen(true);
      };
@@ -18,7 +25,10 @@ const CardsSection = ({ title, cards = [] }) => {
 
      return (
           <>
-               <div id={`category-${title}`} className="specialProductsContainer py-3 px-3">
+               <div
+                    id={`category-${title}`}
+                    className="specialProductsContainer py-3 px-3"
+               >
                     <div className="container-title-lg md:text-center text-start pb-4 font-primary font-bold text-3xl">
                          {title || "Not Title"}
                     </div>
@@ -27,7 +37,7 @@ const CardsSection = ({ title, cards = [] }) => {
                          {cards.length > 0 ? (
                               cards.map((c) => (
                                    <ProductCardH
-                                        key={`${c.id}-${c.title}-${title}`}
+                                        key={`${c.id}-${c.title}-${title || "section"}`}
                                         product={c}
                                         onCardClick={handleCardClick}
                                         title={c.title}

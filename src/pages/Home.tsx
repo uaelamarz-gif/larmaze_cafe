@@ -1,86 +1,69 @@
-import React, { useEffect, useState } from "react";
-import CategorySelector from "../components/CategorySelector";
-import Carousel from "../components/Carousel";
-import ProductsContainer from "../components/ProductsContainer";
-import CardsSection from "../components/Sections/CardsSection";
+import { useEffect, useMemo, useState } from "react";
 import { CiGlobe } from "react-icons/ci";
 import { FiShoppingCart } from "react-icons/fi";
+import Carousel from "../components/Carousel";
+import CategorySelector from "../components/CategorySelector";
+import Footer from "../components/Footer";
+import ProductsContainer from "../components/ProductsContainer";
+import CardsSection from "../components/Sections/CardsSection";
+import Loading from "../components/ui/Loading";
+import SocialBtns from "../components/ui/SocialBtns";
+import { useProducts } from "../hooks/useProducts";
 import { useCart } from "../contexts/CartContext";
 import { useLang } from "../contexts/LangContext";
-import SocialBtns from "../components/ui/SocialBtns";
-import Footer from "../components/Footer";
-import Loading from "../components/ui/Loading";
+import { mapRowToProductView } from "../types/product";
+import { showErrorAlert } from "../utils/alerts";
+
+type CategoryItem = {
+     id: number;
+     name: string;
+};
 
 const Home = () => {
      const { lang: language, toggleLang } = useLang();
-     const [products, setProducts] = useState([]);
-     const [categoriesList, setCategoriesList] = useState([]);
-     const [loading, setLoading] = useState(false);
-     const [error, setError] = useState(null);
+     const { products: rows, loading, fetchProducts } = useProducts();
      const { getTotalItems, openCartModal } = useCart();
 
-     const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
+     const [categoriesList, setCategoriesList] = useState<CategoryItem[]>([]);
+
+     const products = useMemo(() => {
+          return rows.map((row) => mapRowToProductView(row, language));
+     }, [rows, language]);
 
      useEffect(() => {
-          const controller = new AbortController();
+          fetchProducts().catch((err) => {
+               const message =
+                    err instanceof Error
+                         ? err.message
+                         : "Failed to load products";
+               showErrorAlert("خطأ!", message);
+          });
+     }, [fetchProducts]);
 
-          async function fetchProducts() {
-               try {
-                    setLoading(true);
-                    setError(null);
+     useEffect(() => {
+          const catMap = new Map<string, CategoryItem>();
 
-                    const res = await fetch(
-                         `${apiUrl}/products?lang=${language}`,
-                         {
-                              signal: controller.signal,
-                         },
-                    );
-
-                    if (!res.ok) throw new Error("Fetch failed");
-
-                    const data = await res.json();
-                    // API might return an array or an object with .products
-                    const productsArray = Array.isArray(data)
-                         ? data
-                         : data.products || [];
-                    setProducts(productsArray);
-                    // derive categories from productsArray (category can be string or object)
-                    const catsMap = new Map();
-                    const getCatName = (p) => {
-                         const raw = p.category;
-                         if (!raw) return "Uncategorized";
-                         return typeof raw === "string"
-                              ? raw
-                              : raw.name || "Uncategorized";
-                    };
-                    productsArray.forEach((p) => {
-                         const name = getCatName(p);
-                         if (!catsMap.has(name))
-                              catsMap.set(name, { id: catsMap.size + 1, name });
-                    });
-                    const cats = [
-                         { id: 0, name: (language==="ar" ? "عروض خاصة!🔥" : "Special Offers !🔥") },
-                         ...Array.from(catsMap.values()),
-                    ];
-                    setCategoriesList(cats);
-                    //console.log(cats);
-                    //console.log(productsArray);
-               } catch (err) {
-                    if (err.name !== "AbortError") {
-                         setError(err.message);
-                    }
-               } finally {
-                    setLoading(false);
+          products.forEach((item) => {
+               const name = item.category || "Uncategorized";
+               if (!catMap.has(name)) {
+                    catMap.set(name, { id: catMap.size + 1, name });
                }
-          }
+          });
 
-          fetchProducts();
-
-          return () => controller.abort(); // cancel old request on lang switch
-     }, [language]);
+          setCategoriesList([
+               {
+                    id: 0,
+                    name:
+                         language === "ar"
+                              ? "عروض خاصة!🔥"
+                              : "Special Offers !🔥",
+               },
+               ...Array.from(catMap.values()),
+          ]);
+     }, [products, language]);
 
      return (
-          <div className="">
+          <div>
                <button
                     onClick={openCartModal}
                     className="rounded-md p-5 fixed bottom-5 right-8 bg-orange-500 hover:bg-orange-600 transition-colors flex items-center justify-center text-xl text-white"
@@ -93,17 +76,19 @@ const Home = () => {
                          </span>
                     )}
                </button>
-               <div className="img relative pt-3 pb-8  overflow-hidden px-2 bg-black">
+
+               <div className="img relative pt-3 pb-8 overflow-hidden px-2 bg-black">
                     <img
                          src="/bg-cover.webp"
                          className="object-cover w-full h-full filter brightness-50 top-0 left-0 absolute"
                          alt="cover"
                     />
-                    <div className=" resturant-details flex flex-col gap-16 relative m-auto max-w-3xl">
+
+                    <div className="resturant-details flex flex-col gap-16 relative m-auto max-w-3xl">
                          <SocialBtns />
                          <div className="container flex gap-3">
                               <div className="flex w-full justify-between">
-                                   <div className="flex flex-col  gap-2">
+                                   <div className="flex flex-col gap-2">
                                         <div className="logo rounded-full aspect-square w-20 md:w-28 border-white border-4 overflow-hidden">
                                              <img
                                                   src="logo.png"
@@ -116,12 +101,12 @@ const Home = () => {
                                         </h2>
                                    </div>
 
-                                   <div className="flex flex-col  font-primary font-bold justify-end">
+                                   <div className="flex flex-col font-primary font-bold justify-end">
                                         <button
                                              className="btn rounded-2xl bg-gray-100"
                                              onClick={toggleLang}
                                         >
-                                             {language == "en"
+                                             {language === "en"
                                                   ? "العربية"
                                                   : "English"}
                                              <CiGlobe />
@@ -133,6 +118,7 @@ const Home = () => {
                </div>
 
                <CategorySelector categories={categoriesList} />
+
                <div className="container flex flex-col gap-3 max-w-2xl lg:max-w-4xl mx-auto">
                     <div>
                          <Carousel />
@@ -150,6 +136,7 @@ const Home = () => {
                                    }
                                    cards={products.filter((p) => p.isOffer)}
                               />
+
                               <CardsSection
                                    title={
                                         language === "en"
@@ -159,38 +146,43 @@ const Home = () => {
                                    cards={products.filter((p) => p.isPopular)}
                               />
 
-                              {/* Category sections */}
-                              {categoriesList &&
-                                   categoriesList.length > 0 &&
+                              {categoriesList.length > 0 &&
                                    categoriesList.slice(1).map((cat) => {
-                                        const slug = cat.name;
-                                        const catProducts = products.filter(
-                                             (p) => {
-                                                  const raw = p.category;
-                                                  const name = !raw
-                                                       ? "Uncategorized"
-                                                       : typeof raw === "string"
-                                                         ? raw
-                                                         : raw.name ||
-                                                           "Uncategorized";
-                                                  return name === cat.name;
-                                             },
-                                        );
+                                        const catProducts = products
+                                             .filter(
+                                                  (p) =>
+                                                       (p.category ||
+                                                            "Uncategorized") ===
+                                                       cat.name,
+                                             )
+                                             .sort(
+                                                  (a, b) =>
+                                                       a.itemOrder -
+                                                       b.itemOrder,
+                                             );
+
                                         return (
                                              <ProductsContainer
                                                   key={cat.id}
-                                                  id={`category-${slug}`}
+                                                  id={`category-${cat.name}`}
                                                   title={cat.name}
-                                                  products={catProducts.reverse()}
+                                                  products={catProducts}
                                              />
                                         );
                                    })}
 
-                              {/* Fallback main products */}
-                              <ProductsContainer title={language==='en' ? "All Products" : "كل الاطباق"} products={products} />
+                              <ProductsContainer
+                                   title={
+                                        language === "en"
+                                             ? "All Products"
+                                             : "كل الاطباق"
+                                   }
+                                   products={products}
+                              />
                          </>
                     )}
                </div>
+
                <Footer />
           </div>
      );

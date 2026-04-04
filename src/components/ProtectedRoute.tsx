@@ -1,9 +1,16 @@
-import React from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ children }) => {
-     const { isAuthenticated } = useAuth();
+type ProtectedRouteProps = {
+     children: React.ReactNode;
+};
+
+const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
+     const { isAuthenticated, loading } = useAuth();
+
+     if (loading) {
+          return null;
+     }
 
      if (!isAuthenticated) {
           return <Navigate to="/admin/login" replace />;
