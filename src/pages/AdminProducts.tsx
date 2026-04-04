@@ -20,6 +20,7 @@ const AdminProducts = () => {
           useState<ProductFormValues>(emptyProductForm);
      const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
      const [editingId, setEditingId] = useState<string | null>(null);
+     const [selectedCategory, setSelectedCategory] = useState<string>("");
 
      const { logout } = useAuth();
      const navigate = useNavigate();
@@ -52,6 +53,63 @@ const AdminProducts = () => {
                return a.item_order - b.item_order;
           });
      }, [products]);
+
+     const categoryOptions = useMemo(() => {
+          const categoryMap = new Map<string, number>();
+
+          sortedProducts.forEach((product) => {
+               const categoryName = product.category_en?.trim();
+               if (!categoryName) {
+                    return;
+               }
+
+               const categoryOrder = Number(product.category_order ?? 0);
+               const existingOrder = categoryMap.get(categoryName);
+               if (
+                    existingOrder === undefined ||
+                    categoryOrder < existingOrder
+               ) {
+                    categoryMap.set(categoryName, categoryOrder);
+               }
+          });
+
+          return [...categoryMap.entries()]
+               .map(([name, order]) => ({ name, order }))
+               .sort(
+                    (a, b) => a.order - b.order || a.name.localeCompare(b.name),
+               );
+     }, [sortedProducts]);
+
+     const filteredProducts = useMemo(() => {
+          if (!selectedCategory) {
+               return sortedProducts;
+          }
+
+          return sortedProducts.filter(
+               (product) =>
+                    (product.category_en ?? "").trim() === selectedCategory,
+          );
+     }, [selectedCategory, sortedProducts]);
+
+     useEffect(() => {
+          if (categoryOptions.length === 0) {
+               setSelectedCategory("");
+               return;
+          }
+
+          setSelectedCategory((previousCategory) => {
+               if (
+                    previousCategory &&
+                    categoryOptions.some(
+                         (category) => category.name === previousCategory,
+                    )
+               ) {
+                    return previousCategory;
+               }
+
+               return categoryOptions[0].name;
+          });
+     }, [categoryOptions]);
 
      const resetForm = () => {
           setFormData(emptyProductForm);
@@ -149,7 +207,44 @@ const AdminProducts = () => {
                          </div>
                     </header>
 
-                    <CategoryOrderUpdate fetchProducts={fetchProducts} />
+                    <div className="mb-4 rounded-xl bg-white p-4 shadow-sm">
+                         <label
+                              htmlFor="category-filter"
+                              className="mb-2 block text-sm font-semibold text-zinc-700"
+                         >
+                              Select Category
+                         </label>
+                         <select
+                              id="category-filter"
+                              className="w-full rounded-lg border border-zinc-300 bg-white p-3"
+                              value={selectedCategory}
+                              onChange={(e) =>
+                                   setSelectedCategory(e.target.value)
+                              }
+                              disabled={categoryOptions.length === 0}
+                         >
+                              {categoryOptions.length === 0 ? (
+                                   <option value="">
+                                        No categories available
+                                   </option>
+                              ) : (
+                                   categoryOptions.map((category) => (
+                                        <option
+                                             key={category.name}
+                                             value={category.name}
+                                        >
+                                             {category.name} (Order{" "}
+                                             {category.order})
+                                        </option>
+                                   ))
+                              )}
+                         </select>
+                    </div>
+
+                    <CategoryOrderUpdate
+                         fetchProducts={fetchProducts}
+                         categories={categoryOptions}
+                    />
 
                     {isModalOpen && (
                          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
@@ -484,13 +579,13 @@ const AdminProducts = () => {
                               <div className="text-center py-8 text-gray-600">
                                    Loading products...
                               </div>
-                         ) : sortedProducts.length === 0 ? (
+                         ) : filteredProducts.length === 0 ? (
                               <div className="text-center py-8 text-gray-600">
-                                   No products found
+                                   No products found for this category
                               </div>
                          ) : (
                               <div className="grid gap-1 md:gap-3">
-                                   {sortedProducts.map((product) => (
+                                   {filteredProducts.map((product) => (
                                         <div
                                              key={product.id}
                                              className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm"
