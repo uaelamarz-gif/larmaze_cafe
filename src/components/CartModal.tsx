@@ -1,4 +1,3 @@
-import React from "react";
 import { useCart } from "../contexts/CartContext";
 import { useCurrency } from "../contexts/CurrencyContext";
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineDelete } from "react-icons/ai";
@@ -62,7 +61,7 @@ const CartModal = () => {
 
                          {/* Header */}
                          <h2 className="text-2xl font-bold font-primary text-gray-900 mb-4">
-                              {language==="ar" ? "العربة" : "Your Cart" }
+                              {language === "ar" ? "العربة" : "Your Cart"}
                          </h2>
 
                          {/* Cart Items */}
@@ -70,11 +69,11 @@ const CartModal = () => {
                               <div className="flex flex-col gap-4 max-h-96 overflow-y-auto mb-6">
                                    {cart.map((item) => (
                                         <div
-                                             key={item._id}
+                                             key={item.id}
                                              className="flex items-center gap-4 p-3 bg-gray-100 rounded-lg"
                                         >
                                              {/* Image */}
-                                             <div className="w-20 h-20 flex-shrink-0">
+                                             <div className="w-20 h-20 shrink-0">
                                                   <img
                                                        src={
                                                             item.images &&
@@ -94,7 +93,10 @@ const CartModal = () => {
                                                        {item.title}
                                                   </p>
                                                   <p className="text-sm text-gray-600">
-                                                       {item.price}
+                                                       {item.isOffer &&
+                                                       item.offerPrice > 0
+                                                            ? item.offerPrice
+                                                            : item.price}
                                                        {symbol}
                                                   </p>
                                              </div>
@@ -104,7 +106,7 @@ const CartModal = () => {
                                                   <button
                                                        onClick={() =>
                                                             updateQuantity(
-                                                                 item._id,
+                                                                 item.id,
                                                                  item.quantity -
                                                                       1,
                                                             )
@@ -119,7 +121,7 @@ const CartModal = () => {
                                                   <button
                                                        onClick={() =>
                                                             updateQuantity(
-                                                                 item._id,
+                                                                 item.id,
                                                                  item.quantity +
                                                                       1,
                                                             )
@@ -133,7 +135,7 @@ const CartModal = () => {
                                              {/* Delete Button */}
                                              <button
                                                   onClick={() =>
-                                                       removeFromCart(item._id)
+                                                       removeFromCart(item.id)
                                                   }
                                                   className="btn btn-sm btn-error btn-ghost"
                                              >
@@ -144,7 +146,9 @@ const CartModal = () => {
                               </div>
                          ) : (
                               <div className="text-center text-gray-500 py-8">
-                                   {language==="ar" ? "العربة فارغة" : "Your cart is empty" }
+                                   {language === "ar"
+                                        ? "العربة فارغة"
+                                        : "Your cart is empty"}
                               </div>
                          )}
 
@@ -167,14 +171,18 @@ const CartModal = () => {
                                    onClick={closeCartModal}
                                    className="btn btn-ghost"
                               >
-                              {language==="ar" ? "اكمل تسوق" : "Continue Shopping" }
+                                   {language === "ar"
+                                        ? "اكمل تسوق"
+                                        : "Continue Shopping"}
                               </button>
                               {cart.length > 0 && (
                                    <button
                                         onClick={handleWhatsAppOrder}
                                         className="btn btn-success bg-green-400 text-white"
                                    >
-                                   {language==="ar" ? "ارسل إلي واتساب" : "Send to WhatsApp" }          
+                                        {language === "ar"
+                                             ? "ارسل إلي واتساب"
+                                             : "Send to WhatsApp"}
                                    </button>
                               )}
                          </div>

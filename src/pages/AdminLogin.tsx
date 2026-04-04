@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-
-const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
 
 const AdminLogin = () => {
      const { login, loading, error } = useAuth();
@@ -11,7 +9,7 @@ const AdminLogin = () => {
      const [password, setPassword] = useState("");
      const [localError, setLocalError] = useState("");
 
-     const handleSubmit = async (e) => {
+     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
           e.preventDefault();
           if (!email || !password) {
                setLocalError("Email and password are required");

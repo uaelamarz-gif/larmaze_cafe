@@ -1,7 +1,18 @@
 // file: components/CategorySelector.jsx
 import { useEffect, useState } from "react";
 
-export default function CategorySelector({ categories: categoriesProp }) {
+type Category = {
+     id: number;
+     name: string;
+};
+
+type CategorySelectorProps = {
+     categories?: Category[];
+};
+
+export default function CategorySelector({
+     categories: categoriesProp,
+}: CategorySelectorProps) {
      const DEFAULT_CATEGORIES = [
           { id: 1, name: "All" },
           { id: 2, name: "Technology" },
@@ -19,7 +30,6 @@ export default function CategorySelector({ categories: categoriesProp }) {
      const [selected, setSelected] = useState(
           categories && categories[0] ? categories[0].id : 1,
      );
-     const [loading, setLoading] = useState(false);
 
      useEffect(() => {
           if (categoriesProp && categoriesProp.length) {
@@ -28,15 +38,7 @@ export default function CategorySelector({ categories: categoriesProp }) {
           }
      }, [categoriesProp]);
 
-     if (loading) return <div>Loading...</div>;
-
-     const slug = (s) =>
-          s
-               .toLowerCase()
-               .replace(/\s+/g, "-")
-               .replace(/[^a-z0-9\-]/g, "");
-
-     const handleClick = (category, index) => {
+     const handleClick = (category: Category) => {
           setSelected(category.id);
           // scroll to section with id `category-{slug}`
           const targetId = `category-${category.name}`;
@@ -61,22 +63,20 @@ export default function CategorySelector({ categories: categoriesProp }) {
           <div className="sticky top-0 z-50 -mt-6 px-3 mb-3 rounded-md max-w-3xl mx-auto bg-[#eaeaea] shadow-sm">
                <div className="flex items-center min-h-18 gap-3">
                     <div className="flex overflow-scroll no-scrollbar font-secondary font-bold text-[1.1rem]">
-                         {categories.map((category, index) => {
+                         {categories.map((category) => {
                               const isActive = selected === category.id;
                               return (
                                    <div
                                         key={category.id}
                                         role="button"
                                         tabIndex={0}
-                                        onClick={() =>
-                                             handleClick(category, index)
-                                        }
+                                        onClick={() => handleClick(category)}
                                         onKeyDown={(e) => {
                                              if (
                                                   e.key === "Enter" ||
                                                   e.key === " "
                                              )
-                                                  handleClick(category, index);
+                                                  handleClick(category);
                                         }}
                                         className={`p-5 cursor-pointer shrink-0 ${isActive ? "border-b-4 text-[#F5A623] border-[#8B2E2E]" : ""}`}
                                    >
