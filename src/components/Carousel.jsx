@@ -24,7 +24,7 @@ function fetchMockBanners() {
           {
             id: 3,
             image:
-              "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHF64W-EY9pt1eOLt7fKnjd8X4U8UTgk6K3guisdMnNYo09Uu3wbweyuRDPGNqBZi_7w5cuKLAwTjOn_LLUjKjDFr7vAiDkbJ9HvdIJbAskXm2oXQ083xri15959cx2JDMs1a1I=s680-w680-h510-rw",
+              "https://i.ibb.co/KpxQTcs9/unnamed-1.webp",
             alt: "Combo meal",
           },
         ]);
