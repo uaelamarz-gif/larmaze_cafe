@@ -24,7 +24,7 @@ function fetchMockBanners() {
           {
             id: 3,
             image:
-              "https://i.ibb.co/KpxQTcs9/unnamed-1.webp",
+              "https://i.ibb.co/GQ6cKrYs/LAMARZ1.jpg",
             alt: "Combo meal",
           },
         ]);
